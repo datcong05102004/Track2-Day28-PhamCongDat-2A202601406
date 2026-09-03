@@ -1,0 +1,25 @@
+{
+  "environment": {
+    "logical_cpus": 12,
+    "python": "3.11.9",
+    "docker": "desktop-linux",
+    "real_vllm": false
+  },
+  "route": "/ready",
+  "gateway_rate_limit_rps": 10,
+  "profiles": [
+    {
+      "requests": 200,
+      "workers": 8,
+      "status_counts": {"200": 39, "0": 161},
+      "latency_ms": {"p50": 4.8869, "p95": 595.9299, "p99": 1451.563}
+    },
+    {
+      "requests": 200,
+      "workers": 16,
+      "status_counts": {"200": 13, "0": 187},
+      "latency_ms": {"p50": 6.7624, "p95": 729.2513, "p99": 1062.0762}
+    }
+  ],
+  "interpretation": "The standard probe records urllib HTTPError responses as status 0. The live gateway evidence proves rate limiting returns HTTP 429; the observed bottleneck is the 10 RPS edge policy."
+}

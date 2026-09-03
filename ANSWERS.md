@@ -34,7 +34,7 @@ Bài làm chỉ sửa bốn hàm được yêu cầu trong
 | Kubernetes/GitOps manifests | Đạt |
 | Docker Compose core và full config | Hợp lệ |
 | Core stack | Các container bắt buộc running/healthy |
-| Qdrant | 20 points, trạng thái `ready` |
+| Qdrant | 22 points, trạng thái `ready` |
 | MLflow | `lab28-rag-release`, champion version 2 |
 | Seed qua Envoy gateway | 3 documents và 3 feedback được chấp nhận |
 | J1 golden path | 12 passed, 3 GPU-gated skipped |
@@ -65,14 +65,20 @@ Phiên bản release cục bộ dùng để kiểm tra:
 - Embedding model: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2@faf4aa4225822f3bc6376869cb1164e8e3feedd0`
 
 Các trace ID, DAG run ID, Delta version, metric snapshot và bằng chứng phục hồi
-được sinh trực tiếp vào thư mục `evidence/` bởi live integration tests. Thư mục
-này được repo chủ động ignore để không commit dữ liệu chạy cục bộ.
+được sinh trực tiếp vào thư mục `evidence/` bởi live integration tests. Các
+artifact nộp bài JSON/TXT/ZIP trong thư mục này được đưa lên Git có kiểm soát;
+database, cache, credential và toàn bộ `.lab28/` vẫn không được commit.
 
-Evidence cuối ghi nhận DAG run `it-8adc8b7c` thành công với cả bốn task; Delta
-documents ở version 9 với 10 hàng, feedback ở version 15 với 16 hàng. Prometheus
+Evidence cuối ghi nhận DAG run `it-3525cdcf` thành công với cả bốn task; Delta
+documents ở version 12 với 12 hàng, feedback ở version 21 với 21 hàng. Prometheus
 thấy chín target bắt buộc `up`; target vLLM tùy chọn `down` đúng với trạng thái
 UNVERIFIED. Bundle có đủ các file IP01–IP10 cùng bằng chứng Grafana và
 `integration-report.json`.
+
+J3 đã phát hành tạm version 6 từ champion version 2 với đầy đủ prompt/model,
+embedding, Delta version 21, Qdrant collection và Feast service trong tags; sau
+đó alias được rollback về version 2. Output kiểm thử và kiểm tra tĩnh được lưu
+trong các file `*-suite.txt` và `*-check.txt` của evidence bundle.
 
 Trong lần kích hoạt Airflow đầu tiên ngay sau cold-start, consumer group chưa
 hoàn tất rebalance trong ba poll nên batch trả `polled=0`. Kafka chưa commit
