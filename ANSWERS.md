@@ -5,7 +5,7 @@
 - Họ và tên: Phạm Công Đạt
 - Mã học viên: 2A202601406
 - Hình thức: cá nhân
-- Nhánh nộp bài: `ca-nhan-pham-cong-dat`
+- Nhánh nộp bài: `main` (bài cá nhân, nộp trực tiếp)
 - Sơ đồ kiến trúc: [docs/images/lab28-architecture-overview.png](docs/images/lab28-architecture-overview.png)
 
 ## Phần mã đã hoàn thiện
@@ -135,7 +135,7 @@ vì gate vLLM thật không được cấp.
 Vì đây là bài cá nhân, Phạm Công Đạt thực hiện toàn bộ vai trò: đọc contract và
 ma trận IP01–IP10, hoàn thiện bốn hàm cốt lõi, chạy kiểm thử tĩnh/live, kiểm tra
 Docker và manifest, thu bằng chứng, phân tích trade-off, chuẩn bị demo và nộp
-nhánh cá nhân. Không có thành viên khác tham gia.
+trực tiếp trên nhánh `main`. Không có thành viên khác tham gia.
 
 ## Trình tự demo đề xuất
 
